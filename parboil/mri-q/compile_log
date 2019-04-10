@@ -1,0 +1,6 @@
+g++ -O2  -I/home/minh/github/Parboil/common/include -I/usr/local/cuda-9.2/include  -c src/cuda/file.cc -o build/cuda_default/file.o
+/usr/local/cuda/bin/nvcc src/cuda/main.cu -O2 -I/home/minh/github/Parboil/common/include -I/usr/local/cuda-9.2/include  --use_fast_math  -c -o build/cuda_default/main.o
+/usr/local/cuda/bin/nvcc -O2  -I/home/minh/github/Parboil/common/include -I/usr/local/cuda-9.2/include  -c /home/minh/github/Parboil/common/src/parboil_cuda.c -o build/cuda_default/parboil_cuda.o
+gcc -O2  -I/home/minh/github/Parboil/common/include -I/usr/local/cuda-9.2/include  -c /home/minh/github/Parboil/common/src/args.c -o build/cuda_default/args.o
+/usr/local/cuda/bin/nvcc -o build/cuda_default/mri-q -L/usr/local/cuda/cuda-9.2/lib64 -lm -lpthread  build/cuda_default/file.o build/cuda_default/main.o build/cuda_default/parboil_cuda.o build/cuda_default/args.o
+

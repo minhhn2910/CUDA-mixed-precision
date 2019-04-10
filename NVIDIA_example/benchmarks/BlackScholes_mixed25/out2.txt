@@ -1,0 +1,681 @@
+	.headerflags	@"EF_CUDA_TEXMODE_UNIFIED EF_CUDA_64BIT_ADDRESS EF_CUDA_SW_1729687 EF_CUDA_SM60 EF_CUDA_PTX_SM(EF_CUDA_SM60)"
+
+
+//--------------------- .nv.info                  --------------------------
+	.section	.nv.info,"",@"SHT_CUDA_INFO"
+	.align	4
+
+
+	//----- nvinfo : EIATTR_MAX_STACK_SIZE
+	.align		4
+        /*0000*/ 	.byte	0x04, 0x23
+        /*0002*/ 	.short	(.L_13 - .L_12)
+	.align		4
+.L_12:
+        /*0004*/ 	.word	index@($_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32_slowpath)
+        /*0008*/ 	.word	0x00000000
+
+
+	//----- nvinfo : EIATTR_MIN_STACK_SIZE
+	.align		4
+.L_13:
+        /*000c*/ 	.byte	0x04, 0x12
+        /*000e*/ 	.short	(.L_15 - .L_14)
+	.align		4
+.L_14:
+        /*0010*/ 	.word	index@($_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32_slowpath)
+        /*0014*/ 	.word	0x00000000
+
+
+	//----- nvinfo : EIATTR_FRAME_SIZE
+	.align		4
+.L_15:
+        /*0018*/ 	.byte	0x04, 0x11
+        /*001a*/ 	.short	(.L_17 - .L_16)
+	.align		4
+.L_16:
+        /*001c*/ 	.word	index@($_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32_slowpath)
+        /*0020*/ 	.word	0x00000000
+
+
+	//----- nvinfo : EIATTR_MAX_STACK_SIZE
+	.align		4
+.L_17:
+        /*0024*/ 	.byte	0x04, 0x23
+        /*0026*/ 	.short	(.L_19 - .L_18)
+	.align		4
+.L_18:
+        /*0028*/ 	.word	index@($_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32)
+        /*002c*/ 	.word	0x00000000
+
+
+	//----- nvinfo : EIATTR_MIN_STACK_SIZE
+	.align		4
+.L_19:
+        /*0030*/ 	.byte	0x04, 0x12
+        /*0032*/ 	.short	(.L_21 - .L_20)
+	.align		4
+.L_20:
+        /*0034*/ 	.word	index@($_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32)
+        /*0038*/ 	.word	0x00000000
+
+
+	//----- nvinfo : EIATTR_FRAME_SIZE
+	.align		4
+.L_21:
+        /*003c*/ 	.byte	0x04, 0x11
+        /*003e*/ 	.short	(.L_23 - .L_22)
+	.align		4
+.L_22:
+        /*0040*/ 	.word	index@($_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32)
+        /*0044*/ 	.word	0x00000000
+
+
+	//----- nvinfo : EIATTR_MAX_STACK_SIZE
+	.align		4
+.L_23:
+        /*0048*/ 	.byte	0x04, 0x23
+        /*004a*/ 	.short	(.L_25 - .L_24)
+	.align		4
+.L_24:
+        /*004c*/ 	.word	index@(_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi)
+        /*0050*/ 	.word	0x00000000
+
+
+	//----- nvinfo : EIATTR_MIN_STACK_SIZE
+	.align		4
+.L_25:
+        /*0054*/ 	.byte	0x04, 0x12
+        /*0056*/ 	.short	(.L_27 - .L_26)
+	.align		4
+.L_26:
+        /*0058*/ 	.word	index@(_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi)
+        /*005c*/ 	.word	0x00000000
+
+
+	//----- nvinfo : EIATTR_FRAME_SIZE
+	.align		4
+.L_27:
+        /*0060*/ 	.byte	0x04, 0x11
+        /*0062*/ 	.short	(.L_29 - .L_28)
+	.align		4
+.L_28:
+        /*0064*/ 	.word	index@(_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi)
+        /*0068*/ 	.word	0x00000000
+.L_29:
+
+
+//--------------------- .nv.info._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi --------------------------
+	.section	.nv.info._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi,"",@"SHT_CUDA_INFO"
+	.align	4
+
+
+	//----- nvinfo : EIATTR_PARAM_CBANK
+	.align		4
+        /*0000*/ 	.byte	0x04, 0x0a
+        /*0002*/ 	.short	(.L_31 - .L_30)
+	.align		4
+.L_30:
+        /*0004*/ 	.word	index@(.nv.constant0._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi)
+        /*0008*/ 	.short	0x0140
+        /*000a*/ 	.short	0x0034
+
+
+	//----- nvinfo : EIATTR_CBANK_PARAM_SIZE
+	.align		4
+.L_31:
+        /*000c*/ 	.byte	0x03, 0x19
+        /*000e*/ 	.short	0x0034
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+        /*0010*/ 	.byte	0x04, 0x17
+        /*0012*/ 	.short	(.L_33 - .L_32)
+.L_32:
+        /*0014*/ 	.word	0x00000000
+        /*0018*/ 	.short	0x0007
+        /*001a*/ 	.short	0x0030
+        /*001c*/ 	.byte	0x00, 0xf0, 0x11, 0x00
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+.L_33:
+        /*0020*/ 	.byte	0x04, 0x17
+        /*0022*/ 	.short	(.L_35 - .L_34)
+.L_34:
+        /*0024*/ 	.word	0x00000000
+        /*0028*/ 	.short	0x0006
+        /*002a*/ 	.short	0x002c
+        /*002c*/ 	.byte	0x00, 0xf0, 0x11, 0x00
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+.L_35:
+        /*0030*/ 	.byte	0x04, 0x17
+        /*0032*/ 	.short	(.L_37 - .L_36)
+.L_36:
+        /*0034*/ 	.word	0x00000000
+        /*0038*/ 	.short	0x0005
+        /*003a*/ 	.short	0x0028
+        /*003c*/ 	.byte	0x00, 0xf0, 0x11, 0x00
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+.L_37:
+        /*0040*/ 	.byte	0x04, 0x17
+        /*0042*/ 	.short	(.L_39 - .L_38)
+.L_38:
+        /*0044*/ 	.word	0x00000000
+        /*0048*/ 	.short	0x0004
+        /*004a*/ 	.short	0x0020
+        /*004c*/ 	.byte	0x00, 0xf0, 0x21, 0x00
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+.L_39:
+        /*0050*/ 	.byte	0x04, 0x17
+        /*0052*/ 	.short	(.L_41 - .L_40)
+.L_40:
+        /*0054*/ 	.word	0x00000000
+        /*0058*/ 	.short	0x0003
+        /*005a*/ 	.short	0x0018
+        /*005c*/ 	.byte	0x00, 0xf0, 0x21, 0x00
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+.L_41:
+        /*0060*/ 	.byte	0x04, 0x17
+        /*0062*/ 	.short	(.L_43 - .L_42)
+.L_42:
+        /*0064*/ 	.word	0x00000000
+        /*0068*/ 	.short	0x0002
+        /*006a*/ 	.short	0x0010
+        /*006c*/ 	.byte	0x00, 0xf0, 0x21, 0x00
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+.L_43:
+        /*0070*/ 	.byte	0x04, 0x17
+        /*0072*/ 	.short	(.L_45 - .L_44)
+.L_44:
+        /*0074*/ 	.word	0x00000000
+        /*0078*/ 	.short	0x0001
+        /*007a*/ 	.short	0x0008
+        /*007c*/ 	.byte	0x00, 0xf0, 0x21, 0x00
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+.L_45:
+        /*0080*/ 	.byte	0x04, 0x17
+        /*0082*/ 	.short	(.L_47 - .L_46)
+.L_46:
+        /*0084*/ 	.word	0x00000000
+        /*0088*/ 	.short	0x0000
+        /*008a*/ 	.short	0x0000
+        /*008c*/ 	.byte	0x00, 0xf0, 0x21, 0x00
+
+
+	//----- nvinfo : EIATTR_MAXREG_COUNT
+	.align		4
+.L_47:
+        /*0090*/ 	.byte	0x03, 0x1b
+        /*0092*/ 	.short	0x00ff
+
+
+	//----- nvinfo : EIATTR_S2RCTAID_INSTR_OFFSETS
+	.align		4
+        /*0094*/ 	.byte	0x04, 0x1d
+        /*0096*/ 	.short	(.L_49 - .L_48)
+
+
+	//   ....[0]....
+.L_48:
+        /*0098*/ 	.word	0x00000018
+
+
+	//----- nvinfo : EIATTR_EXIT_INSTR_OFFSETS
+	.align		4
+.L_49:
+        /*009c*/ 	.byte	0x04, 0x1c
+        /*009e*/ 	.short	(.L_51 - .L_50)
+
+
+	//   ....[0]....
+.L_50:
+        /*00a0*/ 	.word	0x00000070
+
+
+	//   ....[1]....
+        /*00a4*/ 	.word	0x00000958
+
+
+	//----- nvinfo : EIATTR_MAX_THREADS
+	.align		4
+.L_51:
+        /*00a8*/ 	.byte	0x04, 0x05
+        /*00aa*/ 	.short	(.L_53 - .L_52)
+.L_52:
+        /*00ac*/ 	.word	0x00000080
+        /*00b0*/ 	.word	0x00000001
+        /*00b4*/ 	.word	0x00000001
+
+
+	//----- nvinfo : EIATTR_CRS_STACK_SIZE
+	.align		4
+.L_53:
+        /*00b8*/ 	.byte	0x04, 0x1e
+        /*00ba*/ 	.short	(.L_55 - .L_54)
+.L_54:
+        /*00bc*/ 	.word	0x00000260
+.L_55:
+
+
+//--------------------- .nv.constant2._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi --------------------------
+	.section	.nv.constant2._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi,"a",@progbits
+	.align	4
+.nv.constant2._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi:
+        /*0000*/ 	.byte	0x00, 0x00, 0x80, 0x3f, 0x89, 0x33, 0x6d, 0x3e, 0x6f, 0x46, 0xaa, 0x3f, 0x78, 0x07, 0xe4, 0x3f
+        /*0010*/ 	.byte	0x87, 0x8f, 0xb6, 0xbe, 0xfa, 0x85, 0xa3, 0x3e, 0xff, 0xff, 0xff, 0x7f, 0x00, 0x00, 0x00, 0x80
+
+
+//--------------------- .nv.constant0._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi --------------------------
+	.section	.nv.constant0._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi,"a",@progbits
+	.align	4
+.nv.constant0._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi:
+	.zero		372
+
+
+//--------------------- .text._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi --------------------------
+	.section	.text._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi,"ax",@progbits
+	.sectioninfo	@"SHI_REGISTERS=24"
+	.align	32
+        .global         _Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi
+        .type           _Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi,@function
+        .size           _Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi,(.L_57 - _Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi)
+        .other          _Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi,@"STO_CUDA_ENTRY STV_DEFAULT"
+_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi:
+.text._Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi:
+        /*0008*/                   MOV R1, c[0x0][0x20];
+        /*0010*/         {         MOV R3, c[0x0][0x170];
+        /*0018*/                   S2R R0, SR_CTAID.X;        }
+        /*0028*/         {         LEA.HI R4, R3, c[0x0][0x170], RZ, 0x1;
+        /*0030*/                   S2R R2, SR_TID.X;        }
+        /*0038*/                   XMAD.MRG R3, R0.reuse, c[0x0] [0x8].H1, RZ;
+        /*0048*/                   XMAD R2, R0.reuse, c[0x0] [0x8], R2;
+        /*0050*/                   XMAD.PSL.CBCC R0, R0.H1, R3.H1, R2;
+        /*0058*/                   SHR R2, R4, 0x1;
+        /*0068*/                   ISETP.GE.AND P0, PT, R0, R2, PT;
+        /*0070*/               @P0 EXIT;
+        /*0078*/                   SHL R16, R0.reuse, 0x3;
+        /*0088*/                   SHR R17, R0, 0x1d;
+        /*0090*/                   IADD R6.CC, R16.reuse, c[0x0][0x160];
+        /*0098*/                   IADD.X R7, R17, c[0x0][0x164];
+        /*00a8*/                   LDG.E.CI.64 R6, [R6];
+        /*00b0*/                   IADD R2.CC, R16, c[0x0][0x150];
+        /*00b8*/                   IADD.X R3, R17.reuse, c[0x0][0x154];
+        /*00c8*/         {         IADD R4.CC, R16, c[0x0][0x158];
+        /*00d0*/                   LDG.E.CI.64 R2, [R2];        }
+        /*00d8*/                   IADD.X R5, R17, c[0x0][0x15c];
+        /*00e8*/                   LDG.E.CI.64 R4, [R4];
+        /*00f0*/                   MOV32I R10, 0x4b800000;
+        /*00f8*/                   FSETP.LT.AND P0, PT, |R6|, 1.175494350822287508e-38, PT;
+        /*0108*/                   FMUL R0, R6, 16777216;
+        /*0110*/                   SEL R8, R0, R6, P0;
+        /*0118*/                   MUFU.RSQ R9, R8;
+        /*0128*/               @P0 FMUL R9, R9, 4096;
+        /*0130*/                   FSETP.LT.AND P0, PT, |R9|, 1.175494350822287508e-38, PT;
+        /*0138*/               @P0 FMUL R9, R9, 16777216;
+        /*0148*/                   MUFU.RCP R0, R9;
+        /*0150*/                   SEL R10, R10, c[0x2][0x0], P0;
+        /*0158*/                   MOV R11, R2;
+        /*0168*/                   MOV R12, R4;
+        /*0170*/                   FMUL R0, R0, R10;
+        /*0178*/                   CAL `($_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32);
+        /*0188*/                   FSETP.LT.AND P0, PT, |R11|.reuse, 1.175494350822287508e-38, PT;
+        /*0190*/                   FMUL R8, R11, 16777216;
+        /*0198*/                   SEL R9, R8, R11, P0;
+        /*01a8*/                   MUFU.LG2 R10, R9;
+        /*01b0*/                   FMUL R8, R0, c[0x0][0x16c];
+        /*01b8*/                   MOV R11, c[0x0][0x16c];
+        /*01c8*/                   FSETP.LT.AND P1, PT, |R8|, 1.175494350822287508e-38, PT;
+        /*01d0*/                   FMUL R0, R11, 0.5;
+        /*01d8*/                   FMUL R13, R8, 16777216;
+        /*01e8*/               @P0 FADD R10, R10, -24;
+        /*01f0*/                   FFMA R0, R0, R11, c[0x0][0x168];
+        /*01f8*/                   FMUL32I R11, R10, 0.69314718246459960938;
+        /*0208*/                   SEL R10, R13, R8, P1;
+        /*0210*/                   MUFU.RCP R10, R10;
+        /*0218*/                   FFMA R9, R6, R0, R11;
+        /*0228*/               @P1 FMUL R9, R9, 16777216;
+        /*0230*/                   FMUL R9, R10, R9;
+        /*0238*/                   MOV32I R13, 0x3f800000;
+        /*0248*/                   FADD R11, -R8, R9;
+        /*0250*/                   FADD R12, |R9|, -RZ;
+        /*0258*/                   FADD R14, |R11|.reuse, -RZ;
+        /*0268*/                   FFMA R12, R12, c[0x2][0x4], R13.reuse;
+        /*0270*/                   FFMA R14, R14, c[0x2][0x4], R13;
+        /*0278*/                   FSETP.LT.AND P2, PT, |R12|, 1.175494350822287508e-38, PT;
+        /*0288*/                   FMUL R10, R9, -0.5;
+        /*0290*/                   FMUL R13, R11, -0.5;
+        /*0298*/                   FSETP.LT.AND P3, PT, |R14|, 1.175494350822287508e-38, PT;
+        /*02a8*/                   FMUL R10, R9, R10;
+        /*02b0*/                   FMUL R11, R11, R13;
+        /*02b8*/                   MOV32I R18, 0x4b800000;
+        /*02c8*/               @P2 FMUL R12, R12, 16777216;
+        /*02d0*/         {         FMUL32I R13, R10, 1.4426950216293334961  SLOT 0;
+        /*02d8*/                   MUFU.RCP R10, R12  SLOT 1;        }
+        /*02e8*/                   FMUL32I R19, R11, 1.4426950216293334961;
+        /*02f0*/               @P3 FMUL R14, R14, 16777216;
+        /*02f8*/                   MUFU.RCP R14, R14;
+        /*0308*/                   FSETP.LT.AND P1, PT, R13, -126, PT;
+        /*0310*/                   SEL R11, R18, c[0x2][0x0], P2;
+        /*0318*/                   FSETP.LT.AND P0, PT, |R7|, 1.175494350822287508e-38, PT;
+        /*0328*/                   FSETP.LT.AND P2, PT, R19, -126, PT;
+        /*0330*/                   FMUL R6, R6, c[0x0][0x168];
+        /*0338*/                   SEL R15, R18, c[0x2][0x0], P3;
+        /*0348*/                   FMUL R20, R7, 16777216;
+        /*0350*/                   FMUL R10, R10, R11;
+        /*0358*/                   MOV32I R21, 0x3fe91eea;
+        /*0368*/                   FMUL32I R12, R6, -1.4426950216293334961;
+        /*0370*/                   FMUL R11, R14, R15;
+        /*0378*/               @P1 FMUL R13, R13, 0.5;
+        /*0388*/                   SEL R6, R20, R7, P0;
+        /*0390*/         {         FSETP.LT.AND P3, PT, R12, -126, PT;
+        /*0398*/                   MUFU.RSQ R6, R6;        }
+        /*03a8*/               @P2 FMUL R19, R19, 0.5;
+        /*03b0*/                   FFMA R14, R11, c[0x2][0x8], -R21;
+        /*03b8*/                   FFMA R15, R10.reuse, c[0x2][0x8], -R21;
+        /*03c8*/                   RRO.EX2 R13, R13;
+        /*03d0*/                   MUFU.EX2 R13, R13;
+        /*03d8*/                   RRO.EX2 R19, R19;
+        /*03e8*/         {         FFMA R20, R11, R14, c[0x2][0xc]  SLOT 0;
+        /*03f0*/                   MUFU.EX2 R14, R19  SLOT 1;        }
+        /*03f8*/                   FFMA R15, R10, R15, c[0x2][0xc];
+        /*0408*/               @P3 FMUL R12, R12, 0.5;
+        /*0410*/               @P0 FMUL R6, R6, 4096;
+        /*0418*/                   FFMA R20, R11, R20, c[0x2][0x10];
+        /*0428*/                   FFMA R15, R10, R15, c[0x2][0x10];
+        /*0430*/                   RRO.EX2 R21, R12;
+        /*0438*/               @P1 FMUL R13, R13, R13;
+        /*0448*/                   FSETP.LT.AND P0, PT, |R6|, 1.175494350822287508e-38, PT;
+        /*0450*/         {         FFMA R12, R10, R15, c[0x2][0x14]  SLOT 0;
+        /*0458*/                   MUFU.EX2 R15, R21  SLOT 1;        }
+        /*0468*/                   FFMA R20, R11, R20, c[0x2][0x14];
+        /*0470*/               @P2 FMUL R14, R14, R14;
+        /*0478*/                   FSETP.GT.AND P1, PT, R9.reuse, R8, PT;
+        /*0488*/                   FSETP.GT.AND P2, PT, R9, RZ, PT;
+        /*0490*/                   FMUL32I R8, R13, 0.3989422917366027832;
+        /*0498*/                   FMUL R9, R10, R12;
+        /*04a8*/                   FMUL R11, R11, R20;
+        /*04b0*/                   FMUL32I R10, R14, 0.3989422917366027832;
+        /*04b8*/                   FMUL R8, R8, R9;
+        /*04c8*/               @P0 FMUL R6, R6, 16777216;
+        /*04d0*/         {         FMUL R9, R10, R11;
+        /*04d8*/                   MUFU.RCP R6, R6;        }
+        /*04e8*/               @P3 FMUL R15, R15, R15;
+        /*04f0*/               @P2 FADD R8, -R8, 1;
+        /*04f8*/               @P1 FADD R9, -R9, 1;
+        /*0508*/                   FMUL R11, R4, R15;
+        /*0510*/                   SEL R4, R18, c[0x2][0x0], P0;
+        /*0518*/                   FADD R13, -R8, 1;
+        /*0528*/                   FADD R12, -R9.reuse, 1;
+        /*0530*/                   FMUL R10, R6, R4;
+        /*0538*/                   FMUL R4, R2.reuse, R8;
+        /*0548*/                   FMUL R9, R9, R11;
+        /*0550*/                   FMUL R2, R2, R13;
+        /*0558*/                   FMUL R8, R11, R12;
+        /*0568*/                   MOV R11, R3;
+        /*0570*/                   MOV R12, R5;
+        /*0578*/                   CAL `($_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32);
+        /*0588*/                   FSETP.LT.AND P1, PT, |R11|.reuse, 1.175494350822287508e-38, PT;
+        /*0590*/                   FMUL R6, R11, 16777216;
+        /*0598*/                   SEL R12, R6, R11, P1;
+        /*05a8*/                   MUFU.LG2 R13, R12;
+        /*05b0*/                   FMUL R6, R10, c[0x0][0x16c];
+        /*05b8*/                   FSETP.LT.AND P0, PT, |R6|.reuse, 1.175494350822287508e-38, PT;
+        /*05c8*/                   FMUL R11, R6, 16777216;
+        /*05d0*/               @P1 FADD R13, R13, -24;
+        /*05d8*/                   FMUL32I R13, R13, 0.69314718246459960938;
+        /*05e8*/                   SEL R10, R11, R6, P0;
+        /*05f0*/                   MUFU.RCP R10, R10;
+        /*05f8*/                   FFMA R0, R7, R0, R13;
+        /*0608*/               @P0 FMUL R0, R0, 16777216;
+        /*0610*/                   FMUL R0, R10, R0;
+        /*0618*/                   MOV32I R15, 0x3f800000;
+        /*0628*/                   FADD R12, |R0|.reuse, -RZ;
+        /*0630*/                   FADD R11, -R6, R0;
+        /*0638*/                   FFMA R12, R12, c[0x2][0x4], R15;
+        /*0648*/                   FADD R14, |R11|, -RZ;
+        /*0650*/                   FMUL R13, R0, -0.5;
+        /*0658*/                   FSETP.LT.AND P1, PT, |R12|, 1.175494350822287508e-38, PT;
+        /*0668*/                   FFMA R14, R14, c[0x2][0x4], R15;
+        /*0670*/                   FMUL R13, R0, R13;
+        /*0678*/                   FMUL R10, R11, -0.5;
+        /*0688*/                   FSETP.LT.AND P3, PT, |R14|, 1.175494350822287508e-38, PT;
+        /*0690*/                   FMUL32I R13, R13, 1.4426950216293334961;
+        /*0698*/                   FMUL R11, R11, R10;
+        /*06a8*/                   MOV32I R19, 0x4b800000;
+        /*06b0*/               @P1 FMUL R12, R12, 16777216;
+        /*06b8*/                   MUFU.RCP R10, R12;
+        /*06c8*/                   FSETP.LT.AND P0, PT, R13, -126, PT;
+        /*06d0*/                   FMUL32I R15, R11, 1.4426950216293334961;
+        /*06d8*/                   SEL R11, R19, c[0x2][0x0], P1;
+        /*06e8*/               @P3 FMUL R14, R14, 16777216;
+        /*06f0*/         {         FMUL R7, R7, c[0x0][0x168];
+        /*06f8*/                   MUFU.RCP R14, R14;        }
+        /*0708*/                   FSETP.LT.AND P2, PT, R15, -126, PT;
+        /*0710*/                   MOV32I R20, 0x3fe91eea;
+        /*0718*/                   FMUL R10, R10, R11;
+        /*0728*/                   FMUL32I R18, R7, -1.4426950216293334961;
+        /*0730*/                   SEL R7, R19, c[0x2][0x0], P3;
+        /*0738*/               @P0 FMUL R13, R13, 0.5;
+        /*0748*/                   FFMA R11, R10, c[0x2][0x8], -R20;
+        /*0750*/                   FSETP.LT.AND P1, PT, R18, -126, PT;
+        /*0758*/                   FMUL R7, R14, R7;
+        /*0768*/                   RRO.EX2 R19, R13;
+        /*0770*/               @P2 FMUL R15, R15, 0.5;
+        /*0778*/         {         FFMA R12, R10.reuse, R11, c[0x2][0xc]  SLOT 0;
+        /*0788*/                   MUFU.EX2 R11, R19  SLOT 1;        }
+        /*0790*/                   FFMA R14, R7.reuse, c[0x2][0x8], -R20;
+        /*0798*/                   RRO.EX2 R13, R15;
+        /*07a8*/         {         FFMA R12, R10, R12, c[0x2][0x10];
+        /*07b0*/                   MUFU.EX2 R13, R13;        }
+        /*07b8*/                   FFMA R14, R7, R14, c[0x2][0xc];
+        /*07c8*/               @P1 FMUL R18, R18, 0.5;
+        /*07d0*/                   FFMA R12, R10.reuse, R12, c[0x2][0x14];
+        /*07d8*/               @P0 FMUL R11, R11, R11;
+        /*07e8*/                   FFMA R14, R7, R14, c[0x2][0x10];
+        /*07f0*/                   RRO.EX2 R18, R18;
+        /*07f8*/         {         FSETP.GT.AND P3, PT, R0, RZ, PT;
+        /*0808*/                   MUFU.EX2 R15, R18;        }
+        /*0810*/                   FMUL R12, R10, R12;
+        /*0818*/                   FMUL32I R10, R11, 0.3989422917366027832;
+        /*0828*/               @P2 FMUL R13, R13, R13;
+        /*0830*/                   FFMA R14, R7, R14, c[0x2][0x14];
+        /*0838*/                   FSETP.GT.AND P0, PT, R0, R6, PT;
+        /*0848*/                   FMUL R0, R10, R12;
+        /*0850*/                   FMUL32I R6, R13, 0.3989422917366027832;
+        /*0858*/                   FMUL R7, R7, R14;
+        /*0868*/               @P1 FMUL R15, R15, R15;
+        /*0870*/               @P3 FADD R0, -R0, 1;
+        /*0878*/                   FMUL R6, R6, R7;
+        /*0888*/                   IADD R13.CC, R16, c[0x0][0x140];
+        /*0890*/                   FMUL R7, R5, R15;
+        /*0898*/                   FADD R5, -R0, 1;
+        /*08a8*/               @P0 FADD R6, -R6, 1;
+        /*08b0*/                   IADD.X R14, R17, c[0x0][0x144];
+        /*08b8*/                   IADD R10.CC, R16, c[0x0][0x148];
+        /*08c8*/                   FMUL R12, R3, R5;
+        /*08d0*/                   FMUL R5, R6, R7;
+        /*08d8*/                   FADD R6, -R6, 1;
+        /*08e8*/                   IADD.X R11, R17, c[0x0][0x14c];
+        /*08f0*/                   FADD R4, R4, -R9;
+        /*08f8*/                   FADD R2, R8, -R2;
+        /*0908*/                   FFMA R5, R3, R0, -R5;
+        /*0910*/                   FFMA R3, R7, R6, -R12;
+        /*0918*/                   MOV R6, R13;
+        /*0928*/                   MOV R7, R14;
+        /*0930*/         {         MOV R8, R10;
+        /*0938*/                   STG.E.64 [R6], R4;        }
+        /*0948*/                   MOV R9, R11;
+        /*0950*/                   STG.E.64 [R8], R2;
+        /*0958*/                   EXIT;
+        .weak           $_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32
+        .type           $_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32,@function
+        .size           $_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32,(.L_56 - $_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32)
+$_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32:
+        /*0968*/                   FCHK.DIVIDE P0, R11, R12;
+        /*0970*/               @P0 BRA `(.L_3);
+        /*0978*/         {         FADD.FTZ R14, -R12, -RZ;
+        /*0988*/                   MUFU.RCP R13, R12;        }
+        /*0990*/                   FFMA R15, R13.reuse, R14, c[0x2][0x0];
+        /*0998*/                   FFMA R13, R13, R15, R13;
+        /*09a8*/                   FFMA R20, R11, R13, RZ;
+        /*09b0*/                   FFMA R15, R14.reuse, R20, R11.reuse;
+        /*09b8*/                   FFMA R20, R13, R15, R20;
+        /*09c8*/                   FFMA R11, R14, R20, R11;
+        /*09d0*/         {         FFMA R11, R13, R11, R20;
+        /*09d8*/                   RET;        }
+.L_3:
+        /*09e8*/                   MOV R15, R12;
+        /*09f0*/                   CAL `($_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32_slowpath);
+        /*09f8*/                   RET;
+.L_56:
+        .weak           $_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32_slowpath
+        .type           $_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32_slowpath,@function
+        .size           $_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32_slowpath,(.L_57 - $_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32_slowpath)
+$_Z15BlackScholesGPUP6float2S0_S0_S0_S0_ffi$__cuda_sm3x_div_rn_noftz_f32_slowpath:
+        /*0a08*/                   SHR.U32 R12, R15, 0x17;
+        /*0a10*/                   LOP32I.AND R12, R12, 0xff;
+        /*0a18*/                   SHR.U32 R13, R11, 0x17;
+        /*0a28*/                   IADD32I R19, R12, -0x1;
+        /*0a30*/                   LOP32I.AND R21, R13, 0xff;
+        /*0a38*/                   ISETP.GT.U32.AND P0, PT, R19, 0xfd, PT;
+        /*0a48*/                   IADD32I R22, R21, -0x1;
+        /*0a50*/                   ISETP.GT.U32.OR P0, PT, R22, 0xfd, P0;
+        /*0a58*/                   MOV R13, R11;
+        /*0a68*/                   MOV R18, R15;
+        /*0a70*/         {    @!P0 MOV R11, RZ;
+        /*0a78*/              @!P0 BRA `(.L_4);        }
+        /*0a88*/                   MOV R14, R13;
+        /*0a90*/                   FSET.GTU.FTZ.AND R20, |R15|, +INF , PT;
+        /*0a98*/                   FSET.GTU.FTZ.AND R11, |R14|, +INF , PT;
+        /*0aa8*/                   LOP.OR.NZ P0, RZ, R11, R20;
+        /*0ab0*/               @P0 BRA `(.L_5);
+        /*0ab8*/                   LOP3.LUT R11, R18, c[0x2][0x18], R13, 0xc8;
+        /*0ac8*/                   ISETP.EQ.AND P0, PT, R11, RZ, PT;
+        /*0ad0*/               @P0 BRA `(.L_6);
+        /*0ad8*/                   FSET.EQ.FTZ.AND RZ.CC, |R14|, +INF , PT;
+        /*0ae8*/                   FSETP.EQ.FTZ.AND P0, PT, |R15|, +INF , PT;
+        /*0af0*/         {         FSETP.EQ.FTZ.AND P1, PT, |R14|, +INF , PT;
+        /*0af8*/               @P0 BRA CC.NEU, `(.L_6);        }
+        /*0b08*/                   LOP32I.AND R11, R13, 0x7fffffff;
+        /*0b10*/                   ISETP.EQ.OR P0, PT, R11, RZ, P0;
+        /*0b18*/               @P0 BRA `(.L_7);
+        /*0b28*/                   LOP32I.AND R11, R18, 0x7fffffff;
+        /*0b30*/                   ISETP.EQ.OR P0, PT, R11, RZ, P1;
+        /*0b38*/               @P0 BRA `(.L_8);
+        /*0b48*/                   ISETP.LT.AND P0, PT, R22, RZ, PT;
+        /*0b50*/                   ISETP.LT.AND P1, PT, R19, RZ, PT;
+        /*0b58*/              @!P0 MOV R11, RZ;
+        /*0b68*/               @P0 MOV32I R11, 0xffffffc0;
+        /*0b70*/               @P0 FFMA R13, R14, 1.84467440737095516160e+19, RZ;
+        /*0b78*/               @P1 FFMA R18, R15, 1.84467440737095516160e+19, RZ;
+        /*0b88*/               @P1 IADD32I R11, R11, 0x40;
+.L_4:
+        /*0b90*/                   ISCADD32I R15, R12, -0x3f800000, 0x17;
+        /*0b98*/                   IADD R19, R18, -R15;
+        /*0ba8*/                   MUFU.RCP R14, R19;
+        /*0bb0*/                   FADD.FTZ R20, -R19, -RZ;
+        /*0bb8*/                   IADD32I R18, R21, -0x7f;
+        /*0bc8*/                   FFMA R21, R14, R20, c[0x2][0x0];
+        /*0bd0*/                   ISCADD R15, -R18, R13, 0x17;
+        /*0bd8*/                   FFMA R13, R14, R21, R14;
+        /*0be8*/                   FFMA R14, R15, R13, RZ;
+        /*0bf0*/                   FFMA R23, R20.reuse, R14, R15.reuse;
+        /*0bf8*/                   FFMA R14, R13, R23, R14;
+        /*0c08*/                   FFMA R15, R20, R14, R15;
+        /*0c10*/                   IADD3 R12, R18, 0x7f, -R12;
+        /*0c18*/                   FFMA R20, R13, R15, R14;
+        /*0c28*/                   IADD R12, R11, R12;
+        /*0c30*/                   SHR.U32 R18, R20, 0x17;
+        /*0c38*/                   LOP32I.AND R11, R18, 0xff;
+        /*0c48*/                   IADD R18, R11, R12;
+        /*0c50*/                   IADD32I R11, R18, -0x1;
+        /*0c58*/                   ISETP.LT.U32.AND P0, PT, R11, 0xfe, PT;
+        /*0c68*/         {         MOV R11, R20;
+        /*0c70*/               @P0 BRA `(.L_9);        }
+        /*0c78*/                   ISETP.GT.AND P0, PT, R18, 0xfe, PT;
+        /*0c88*/               @P0 BRA `(.L_10);
+        /*0c90*/                   ISETP.LT.AND P0, PT, R18, 0x1, PT;
+        /*0c98*/              @!P0 RET;
+        /*0ca8*/                   ISETP.LT.AND P0, PT, R18, -0x18, PT;
+        /*0cb0*/         {         LOP32I.AND R11, R11, 0x80000000;
+        /*0cb8*/               @P0 RET;        }
+        /*0cc8*/                   FFMA.RZ R12, R13.reuse, R15.reuse, R14.reuse;
+        /*0cd0*/                   ISETP.NE.AND P1, PT, R18.reuse, RZ, PT;
+        /*0cd8*/                   LOP32I.AND R12, R12, 0x7fffff;
+        /*0ce8*/                   IADD32I R20, R18, 0x20;
+        /*0cf0*/                   LOP32I.OR R19, R12, 0x800000;
+        /*0cf8*/                   FFMA.RP R12, R13, R15, R14;
+        /*0d08*/                   FFMA.RM R13, R13, R15, R14;
+        /*0d10*/                   SHL R14, R19, R20;
+        /*0d18*/                   FSETP.NEU.FTZ.AND P0, PT, R12, R13, PT;
+        /*0d28*/                   ISETP.NE.AND P1, PT, R14, RZ, P1;
+        /*0d30*/                   IADD R12, -R18, RZ;
+        /*0d38*/                   ICMP.EQ R12, RZ, R12, R18;
+        /*0d48*/                   PSETP.OR.AND P0, PT, P0, P1, PT;
+        /*0d50*/                   SHR.U32 R12, R19, R12;
+        /*0d58*/                   SHR.U32 R14, R12, 0x1;
+        /*0d68*/                   SEL R13, RZ, 0x1, !P0;
+        /*0d70*/                   LOP3.LUT R13, R13, 0x1, R14, 0xf8;
+        /*0d78*/                   LOP.AND R12, R13, R12;
+        /*0d88*/                   IADD R12, R14, R12;
+        /*0d90*/         {         LOP.OR R11, R12, R11;
+        /*0d98*/                   RET;        }
+.L_10:
+        /*0da8*/                   LOP32I.AND R11, R11, 0x80000000;
+        /*0db0*/         {         LOP32I.OR R11, R11, 0x7f800000;
+        /*0db8*/                   RET;        }
+.L_9:
+        /*0dc8*/         {         ISCADD R11, R12, R11, 0x17;
+        /*0dd0*/                   RET;        }
+.L_8:
+        /*0dd8*/                   LOP3.LUT R11, R18, c[0x2][0x1c], R13, 0x48;
+        /*0de8*/         {         LOP32I.OR R11, R11, 0x7f800000;
+        /*0df0*/                   RET;        }
+.L_7:
+        /*0df8*/         {         LOP3.LUT R11, R18, c[0x2][0x1c], R13, 0x48;
+        /*0e08*/                   RET;        }
+.L_6:
+        /*0e10*/         {         MOV32I R11, 0x7fffffff;
+        /*0e18*/                   RET;        }
+.L_5:
+        /*0e28*/         {         FADD.FTZ R11, R14, R15;
+        /*0e30*/                   RET;        }
+.L_11:
+        /*0e38*/                   BRA `(.L_11);
+.L_57:
+
+
+//--------------------- .nv.global                --------------------------
+	.section	.nv.global,"aw",@nobits
+	.align	8
+	.type		_ZTV18StopWatchInterface,@object
+	.size		_ZTV18StopWatchInterface,(_ZTV14StopWatchLinux - _ZTV18StopWatchInterface)
+_ZTV18StopWatchInterface:
+.nv.global:
+	.zero		72
+	.type		_ZTV14StopWatchLinux,@object
+	.size		_ZTV14StopWatchLinux,(.L_2 - _ZTV14StopWatchLinux)
+_ZTV14StopWatchLinux:
+	.zero		72
+.L_2:

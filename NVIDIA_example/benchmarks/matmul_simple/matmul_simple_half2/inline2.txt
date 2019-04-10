@@ -1,0 +1,230 @@
+	.headerflags	@"EF_CUDA_TEXMODE_UNIFIED EF_CUDA_64BIT_ADDRESS EF_CUDA_SW_1729687 EF_CUDA_SM60 EF_CUDA_PTX_SM(EF_CUDA_SM60)"
+
+
+//--------------------- .nv.info                  --------------------------
+	.section	.nv.info,"",@"SHT_CUDA_INFO"
+	.align	4
+
+
+	//----- nvinfo : EIATTR_MAX_STACK_SIZE
+	.align		4
+        /*0000*/ 	.byte	0x04, 0x23
+        /*0002*/ 	.short	(.L_5 - .L_4)
+	.align		4
+.L_4:
+        /*0004*/ 	.word	index@(_Z10matrixMultP7__half2S0_S0_i)
+        /*0008*/ 	.word	0x00000000
+
+
+	//----- nvinfo : EIATTR_MIN_STACK_SIZE
+	.align		4
+.L_5:
+        /*000c*/ 	.byte	0x04, 0x12
+        /*000e*/ 	.short	(.L_7 - .L_6)
+	.align		4
+.L_6:
+        /*0010*/ 	.word	index@(_Z10matrixMultP7__half2S0_S0_i)
+        /*0014*/ 	.word	0x00000000
+
+
+	//----- nvinfo : EIATTR_FRAME_SIZE
+	.align		4
+.L_7:
+        /*0018*/ 	.byte	0x04, 0x11
+        /*001a*/ 	.short	(.L_9 - .L_8)
+	.align		4
+.L_8:
+        /*001c*/ 	.word	index@(_Z10matrixMultP7__half2S0_S0_i)
+        /*0020*/ 	.word	0x00000000
+.L_9:
+
+
+//--------------------- .nv.info._Z10matrixMultP7__half2S0_S0_i --------------------------
+	.section	.nv.info._Z10matrixMultP7__half2S0_S0_i,"",@"SHT_CUDA_INFO"
+	.align	4
+
+
+	//----- nvinfo : EIATTR_PARAM_CBANK
+	.align		4
+        /*0000*/ 	.byte	0x04, 0x0a
+        /*0002*/ 	.short	(.L_11 - .L_10)
+	.align		4
+.L_10:
+        /*0004*/ 	.word	index@(.nv.constant0._Z10matrixMultP7__half2S0_S0_i)
+        /*0008*/ 	.short	0x0140
+        /*000a*/ 	.short	0x001c
+
+
+	//----- nvinfo : EIATTR_CBANK_PARAM_SIZE
+	.align		4
+.L_11:
+        /*000c*/ 	.byte	0x03, 0x19
+        /*000e*/ 	.short	0x001c
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+        /*0010*/ 	.byte	0x04, 0x17
+        /*0012*/ 	.short	(.L_13 - .L_12)
+.L_12:
+        /*0014*/ 	.word	0x00000000
+        /*0018*/ 	.short	0x0003
+        /*001a*/ 	.short	0x0018
+        /*001c*/ 	.byte	0x00, 0xf0, 0x11, 0x00
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+.L_13:
+        /*0020*/ 	.byte	0x04, 0x17
+        /*0022*/ 	.short	(.L_15 - .L_14)
+.L_14:
+        /*0024*/ 	.word	0x00000000
+        /*0028*/ 	.short	0x0002
+        /*002a*/ 	.short	0x0010
+        /*002c*/ 	.byte	0x00, 0xf0, 0x21, 0x00
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+.L_15:
+        /*0030*/ 	.byte	0x04, 0x17
+        /*0032*/ 	.short	(.L_17 - .L_16)
+.L_16:
+        /*0034*/ 	.word	0x00000000
+        /*0038*/ 	.short	0x0001
+        /*003a*/ 	.short	0x0008
+        /*003c*/ 	.byte	0x00, 0xf0, 0x21, 0x00
+
+
+	//----- nvinfo : EIATTR_KPARAM_INFO
+	.align		4
+.L_17:
+        /*0040*/ 	.byte	0x04, 0x17
+        /*0042*/ 	.short	(.L_19 - .L_18)
+.L_18:
+        /*0044*/ 	.word	0x00000000
+        /*0048*/ 	.short	0x0000
+        /*004a*/ 	.short	0x0000
+        /*004c*/ 	.byte	0x00, 0xf0, 0x21, 0x00
+
+
+	//----- nvinfo : EIATTR_MAXREG_COUNT
+	.align		4
+.L_19:
+        /*0050*/ 	.byte	0x03, 0x1b
+        /*0052*/ 	.short	0x00ff
+
+
+	//----- nvinfo : EIATTR_S2RCTAID_INSTR_OFFSETS
+	.align		4
+        /*0054*/ 	.byte	0x04, 0x1d
+        /*0056*/ 	.short	(.L_21 - .L_20)
+
+
+	//   ....[0]....
+.L_20:
+        /*0058*/ 	.word	0x00000010
+
+
+	//   ....[1]....
+        /*005c*/ 	.word	0x00000028
+
+
+	//----- nvinfo : EIATTR_EXIT_INSTR_OFFSETS
+	.align		4
+.L_21:
+        /*0060*/ 	.byte	0x04, 0x1c
+        /*0062*/ 	.short	(.L_23 - .L_22)
+
+
+	//   ....[0]....
+.L_22:
+        /*0064*/ 	.word	0x000000b0
+
+
+	//   ....[1]....
+        /*0068*/ 	.word	0x00000268
+.L_23:
+
+
+//--------------------- .nv.constant0._Z10matrixMultP7__half2S0_S0_i --------------------------
+	.section	.nv.constant0._Z10matrixMultP7__half2S0_S0_i,"a",@progbits
+	.align	4
+.nv.constant0._Z10matrixMultP7__half2S0_S0_i:
+	.zero		348
+
+
+//--------------------- .text._Z10matrixMultP7__half2S0_S0_i --------------------------
+	.section	.text._Z10matrixMultP7__half2S0_S0_i,"ax",@progbits
+	.sectioninfo	@"SHI_REGISTERS=10"
+	.align	32
+        .global         _Z10matrixMultP7__half2S0_S0_i
+        .type           _Z10matrixMultP7__half2S0_S0_i,@function
+        .size           _Z10matrixMultP7__half2S0_S0_i,(.L_24 - _Z10matrixMultP7__half2S0_S0_i)
+        .other          _Z10matrixMultP7__half2S0_S0_i,@"STO_CUDA_ENTRY STV_DEFAULT"
+_Z10matrixMultP7__half2S0_S0_i:
+.text._Z10matrixMultP7__half2S0_S0_i:
+        /*0008*/                   MOV R1, c[0x0][0x20];
+        /*0010*/                   S2R R0, SR_CTAID.Y;
+        /*0018*/                   S2R R5, SR_TID.Y;
+        /*0028*/                   S2R R2, SR_CTAID.X;
+        /*0030*/                   S2R R3, SR_TID.X;
+        /*0038*/                   XMAD.MRG R6, R0.reuse, c[0x0] [0xc].H1, RZ;
+        /*0048*/                   XMAD R5, R0.reuse, c[0x0] [0xc], R5;
+        /*0050*/                   XMAD.PSL.CBCC R0, R0.H1, R6.H1, R5;
+        /*0058*/                   MOV R6, c[0x0][0x158];
+        /*0068*/                   XMAD R3, R2.reuse, c[0x0] [0x8], R3;
+        /*0070*/                   XMAD.MRG R4, R2.reuse, c[0x0] [0x8].H1, RZ;
+        /*0078*/                   ISETP.LT.AND P0, PT, R0, c[0x0][0x158], PT;
+        /*0088*/                   LEA.HI R5, R6, c[0x0][0x158], RZ, 0x1;
+        /*0090*/                   XMAD.PSL.CBCC R3, R2.H1, R4.H1, R3;
+        /*0098*/                   SHR R2, R5, 0x1;
+        /*00a8*/                   ISETP.LT.AND P0, PT, R3, R2, P0;
+        /*00b0*/              @!P0 EXIT;
+        /*00b8*/                   ISETP.LT.AND P0, PT, R6, 0x1, PT;
+        /*00c8*/         {         MOV R2, RZ;
+        /*00d0*/               @P0 BRA `(.L_1);        }
+        /*00d8*/                   XMAD R5, R0.reuse, c[0x0] [0x158], RZ;
+        /*00e8*/                   XMAD.MRG R6, R0.reuse, c[0x0] [0x158].H1, RZ;
+        /*00f0*/                   XMAD.PSL.CBCC R4, R0.H1, R6.H1, R5;
+        /*00f8*/                   SHL R5, R4.reuse, 0x1;
+        /*0108*/                   SHR R6, R4, 0x1f;
+        /*0110*/                   IADD R4.CC, R5, c[0x0][0x140];
+        /*0118*/                   MOV R8, RZ;
+        /*0128*/                   IADD.X R5, R6, c[0x0][0x144];
+.L_2:
+        /*0130*/                   XMAD R6, R8.reuse, c[0x0] [0x158], RZ;
+        /*0138*/                   XMAD.MRG R7, R8.reuse, c[0x0] [0x158].H1, RZ;
+        /*0148*/                   XMAD.PSL.CBCC R6, R8.H1, R7.H1, R6;
+        /*0150*/                   LEA.HI R6, R6, R6, RZ, 0x1;
+        /*0158*/                   SHR R6, R6, 0x1;
+        /*0168*/                   IADD R6, R3, R6;
+        /*0170*/                   SHL R7, R6.reuse, 0x2;
+        /*0178*/                   SHR R9, R6, 0x1e;
+        /*0188*/                   IADD R6.CC, R7, c[0x0][0x148];
+        /*0190*/         {         IADD.X R7, R9, c[0x0][0x14c]  SLOT 0;
+        /*0198*/                   LDG.E.U16 R9, [R4]  SLOT 1;        }
+        /*01a8*/         {         IADD32I R8, R8, 0x1;
+        /*01b0*/                   LDG.E R7, [R6];        }
+        /*01b8*/                   ISETP.LT.AND P0, PT, R8, c[0x0][0x158], PT;
+        /*01c8*/                   IADD32I R4.CC, R4, 0x2;
+        /*01d0*/                   IADD.X R5, RZ, R5;
+        /*01d8*/                   HFMA2 R2, R9.H0_H0, R7, R2;
+        /*01e8*/               @P0 BRA `(.L_2);
+.L_1:
+        /*01f0*/                   XMAD R5, R0.reuse, c[0x0] [0x158], RZ;
+        /*01f8*/                   XMAD.MRG R6, R0.reuse, c[0x0] [0x158].H1, RZ;
+        /*0208*/                   XMAD.PSL.CBCC R0, R0.H1, R6.H1, R5;
+        /*0210*/                   LEA.HI R0, R0, R0, RZ, 0x1;
+        /*0218*/                   SHR R0, R0, 0x1;
+        /*0228*/                   IADD R0, R3, R0;
+        /*0230*/                   SHL R3, R0.reuse, 0x2;
+        /*0238*/                   SHR R0, R0, 0x1e;
+        /*0248*/                   IADD R4.CC, R3, c[0x0][0x150];
+        /*0250*/                   IADD.X R5, R0, c[0x0][0x154];
+        /*0258*/                   STG.E [R4], R2;
+        /*0268*/                   EXIT;
+.L_3:
+        /*0270*/                   BRA `(.L_3);
+.L_24:

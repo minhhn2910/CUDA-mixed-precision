@@ -1,0 +1,10 @@
+{
+    "invkin_kernel": {
+        "InputRangeA": -1.0, 
+        "InputRangeB": 1.0, 
+        "OutputRangeA": -1.0, 
+        "OutputRangeB": 1.0, 
+        "nInputs": "2", 
+        "nOutputs": "3"
+    }
+}

@@ -1,0 +1,30 @@
+==7463== NVPROF is profiling process 7463, command: ./lulesh -s 80
+==7463== Profiling application: ./lulesh -s 80
+==7463== Profiling result:
+            Type  Time(%)      Time     Calls       Avg       Min       Max  Name
+ GPU activities:   44.62%  1.73615s      2774  625.86us  614.27us  634.68us  CalcKinematicsAndMonotonicQGradient_kernel(int, int, float, int const *, float const *, float const *, float const *, float const *, float const *, float const *, float const *, float const *, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, int*, int)
+                   24.14%  939.20ms      2774  338.57us  331.97us  391.00us  void CalcVolumeForceForElems_kernel<bool=1>(float const *, float const *, float const *, float const *, float, int, int, int const *, float const *, float const *, float const *, float const *, float const *, float const *, float const *, float const *, float*, float*, float*, int*, int)
+                   11.54%  449.22ms      2774  161.94us  155.33us  181.44us  ApplyMaterialPropertiesAndUpdateVolume_kernel(int, float, float, float, float*, float*, float*, float*, float, float, float, float, float, int*, float*, float*, float*, float*, float, float*, float, int*, int, int const *, int const *, int)
+                    9.26%  360.47ms      2774  129.95us  122.50us  134.94us  CalcMonotonicQRegionForElems_kernel(float, float, float, float, float, int, int*, int*, int*, int*, int*, int*, int*, int*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float*, float, int*)
+                    4.36%  169.84ms      2774  61.226us  60.448us  62.559us  CalcPositionAndVelocityForNodes_kernel(int, float, float, float*, float*, float*, float*, float*, float*, float const *, float const *, float const *)
+                    2.11%  82.023ms      2774  29.568us  28.512us  30.912us  CalcAccelerationForNodes_kernel(int, float*, float*, float*, float*, float*, float*, float*)
+                    2.03%  79.172ms      2774  28.540us  27.456us  31.136us  void CalcTimeConstraintsForElems_kernel<int=128>(int, float, float, int*, float*, float*, float*, float*, float*)
+                    0.84%  32.562ms      8334  3.9070us  3.5840us  8.7360us  void thrust::cuda_cub::core::_kernel_agent<thrust::cuda_cub::__parallel_for::ParallelForAgent<thrust::cuda_cub::__fill::functor<thrust::detail::normal_iterator<thrust::device_ptr<float>>, double>, long>, thrust::cuda_cub::__fill::functor<thrust::detail::normal_iterator<thrust::device_ptr<float>>, double>, long>(thrust::device_ptr<float>, thrust::detail::normal_iterator<thrust::device_ptr<float>>)
+                    0.39%  15.128ms        27  560.29us     992ns  4.3091ms  [CUDA memcpy HtoD]
+                    0.38%  14.787ms      8322  1.7760us  1.4720us  9.5680us  ApplyAccelerationBoundaryConditionsForNodes_kernel(int, float*, int*)
+                    0.32%  12.428ms      2774  4.4800us  4.3520us  12.832us  void CalcMinDtOneBlock<int=1024>(float*, float*, float*, float*, int)
+                    0.00%  177.15us        37  4.7870us  1.3120us  5.3440us  void thrust::cuda_cub::core::_kernel_agent<thrust::cuda_cub::__parallel_for::ParallelForAgent<thrust::cuda_cub::__uninitialized_fill::functor<thrust::device_ptr<float>, float>, unsigned long>, thrust::cuda_cub::__uninitialized_fill::functor<thrust::device_ptr<float>, float>, unsigned long>(thrust::device_ptr<float>, float)
+                    0.00%  89.952us        17  5.2910us  1.2160us  30.944us  void thrust::cuda_cub::core::_kernel_agent<thrust::cuda_cub::__parallel_for::ParallelForAgent<thrust::cuda_cub::__uninitialized_fill::functor<thrust::device_ptr<int>, int>, unsigned long>, thrust::cuda_cub::__uninitialized_fill::functor<thrust::device_ptr<int>, int>, unsigned long>(thrust::device_ptr<int>, int)
+                    0.00%  1.3760us         1  1.3760us  1.3760us  1.3760us  [CUDA memcpy DtoH]
+
+
+
+633.31ms  628.73us           (8000 1 1)        (64 1 1)        64        0B        0B         -           -           -           -  Tesla P100-PCIE         1         7  CalcKinematicsAndMonotonicQGradient_kernel(int, int, float, int const *, float const *, float const *, float const *, float const *, float const *, float const *, float const *, 
+
+
+635.76ms  363.65us           (8000 1 1)        (64 1 1)       128        0B        0B         -           -           -           -  Tesla P100-PCIE         1         7  void CalcVolumeForceForElems_kernel<bool=1>(float const *, float const *, float const *, float const *, float, int, int, int const *, float const *, float const *, float const *, float const *, float const *, float const *, float const *, float const *, float*, float*, float*, int*, int) [807]
+
+638.45ms  169.09us           (4000 1 1)       (128 1 1)        39        0B        0B         -           -           -           -  Tesla P100-PCIE         1         7  ApplyMaterialPropertiesAndUpdateVolume_kernel(int, float, float, float, float*, float*, float*, float*, float, float, float, float, float, int*, float*, float*, float*, float*, float, float*, float, int*, int, int const *, int const *, int) [848]
+
+
+

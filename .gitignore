@@ -1,0 +1,5 @@
+*.o
+rodinia/data/*
+!rodinia/data/kmeans/inpuGen/*.cpp
+!rodinia/data/kmeans/inpuGen/*.sh
+!rodinia/data/kmeans/inpuGen/Makefile

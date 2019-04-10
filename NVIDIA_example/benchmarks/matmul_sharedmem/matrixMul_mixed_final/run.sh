@@ -1,0 +1,1 @@
+./matrixMul -speed=100

@@ -1,0 +1,10 @@
+{
+    "nrpol3_kernel": {
+        "InputRangeA": 0.0, 
+        "InputRangeB": 0.0, 
+        "OutputRangeA": -2.0, 
+        "OutputRangeB": 2.0, 
+        "nInputs": "5", 
+        "nOutputs": "1"
+    }
+}

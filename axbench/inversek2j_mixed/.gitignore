@@ -1,0 +1,7 @@
+bin/
+obj/
+log/
+nn.configs/
+train.data/
+inversek2j_invkin_kernel.json
+kernel_invkin_kernel.data

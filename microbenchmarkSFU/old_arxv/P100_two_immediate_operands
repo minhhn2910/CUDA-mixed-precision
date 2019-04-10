@@ -1,0 +1,36 @@
+P100 optimize, two constants in 1 instruction:
+Original code:
+  uint32_t start = 0;
+  // start timing
+  asm volatile ("mov.u32 %0, %%clock;" : "=r"(start) :: "memory");
+  // doing computation
+  half2 coeff_0 = __float2half2_rn(0.123);
+  half2 coeff_1 = __float2half2_rn(0.456);
+  half2 sink = coeff_0 + temp*coeff_1;
+  //remember sink = temp + temp*coeff_1 worked in P100vsV100.txt because only 1 constant in the FMA (multiply add instruction)
+  //this time two constant in the FMA instruction (coeff_0 and coeff_1)
+  // stop timing
+  uint32_t stop = 0;
+  asm volatile ("mov.u32 %0, %%clock;" : "=r"(stop) :: "memory");
+  // write time and data back to memory
+
+V100 Machine code : 418 cycles
+/*0130*/                   CS2R.32 R9, SR_CLOCKLO ;
+/*0140*/                   HADD2 R3, -RZ.H0_H0, c[0x2] [0x0].F32 ; //load constant memory to R3 then do computation in the next instruction
+/*0150*/                   PRMT R0, R0, 0x5410, R5 ;
+/*0160*/                   HFMA2 R0, R0, 0.4560546875, 0.4560546875, R3.H0_H0 ;//notice it duplicates the immediate operands to serve half2 instruction
+/*0170*/                   CS2R.32 R10, SR_CLOCKLO ;
+
+Rewrite to eliminate constant memory
+original
+  half2 sink = coeff_0 + temp*coeff_1;
+change to:
+  half2 sink = temp*coeff_1;
+  sink.x = sink.x + coeff_0.y; //simply vector type, sink.x = get first half. this is to confuse the compiler optimization
+  sink.y = sink.y + coeff_0.y; //so this will be compiled to 1 multiply + 1 add instruction with immediate values
+Optimized V100 Machine code : 22 cycles
+/*0130*/                   CS2R.32 R9, SR_CLOCKLO ;
+/*0140*/                   PRMT R0, R0, 0x5410, R5 ;
+/*0150*/                   HMUL2 R0, R0, 0.4560546875, 0.4560546875 ;
+/*0160*/                   CS2R.32 R10, SR_CLOCKLO ; //it's a bit odd since i cant control where this stop clock should be placed in the machine code.
+/*0170*/                   HADD2 R0, R0, 0.12298583984375, 0.12298583984375 ; // but generally it's achieved, optimized to not using global memory

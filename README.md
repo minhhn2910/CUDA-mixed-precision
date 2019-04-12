@@ -11,11 +11,19 @@ This repo contains all benchmarks for mixed precision tuning between FP16 and FP
 2. `axbench/`: There are two benchmarks. For this benchmarks suite, we use the compile.sh script inside each benchmark. If your GPU architecture is different from Volta, please change the `arch` flag for correct compiling. The `run_and_compare.sh` script now takes a speed parameter, which is the number of approximated blocks. It ranges from 0 to 2048. e.g. `./run_and_compare.sh 1024` 
     * `inversek2j_mixed`
     * `newton-raph_mixed`
-3. `parboil/`. There are 2 benchmarks. To compile them, run `compile_mixed.sh` or `build_mixed.sh`. To change the approximation degree, please go to the subfolder `cuda_mixed` inside each benchmark to change the `SPEED` definition at the beginning of the code. In the code, there will be comment mentioning the range of the SPEED value. Again, `./run_and_compare.sh` is used to run and show the output error.
+3. `parboil/`. There are 2 benchmarks. To compile them, run `compile_mixed.sh` or `build_mixed.sh`. To change the approximation degree, please go to the subfolder `cuda_mixed` inside each benchmark to change the `SPEED` definition at the beginning of the code. In the code, there will be comment mentioning the range of the `SPEED` value. Again, `./run_and_compare.sh` is used to run and show the output error.
     * `mri-q`
     * `cp`
-    
-4. `microbenchmarkSFU/benchmarks `: This contains the microbenchmarks and compile scripts to benchmark the math functions in CUDA. There will be a README file explains how to rerun the microbenchmarks
+4. `rodinia/`. There are 2 benchmarks. To compile them, use the respective make file inside the subfolders. The method to change the approximation degree is similar to `parboil`. 
+    * `kmeans_mixed`
+    * `lavaMD_mixed` 
+## FP32-FP64 mix and auxiliary folder: 
+1. `Nvidia_example/benchmarks/BlackScholes_mixed`  contains the mixed precision method for blackscholes. The same compile and run method as `Nvidia_example/`in the previous section. This subfolder also contains the search script on python.
+2. `lulesh/lulesh_new/lulesh_mixed` LULESH example. The `makefile` and `run.sh` are provided. The `SPEED` parameter need to be changed. 
+3. `funarc/funarc_mixed_fp3264/` contains the arclength example. 
+2. `microbenchmarkSFU/benchmarks `: This contains the microbenchmarks and compile scripts to benchmark the math functions in CUDA. There will be a README file explains how to rerun the microbenchmarks
 
+## Input Data: 
+The input data are provided in this repo, there is no need to generate input (except for `kmeans`, where the randomly generated input is too large). You can generate input for `kmeans` by going to the `rodinia/data/kmeans/inpuGen/`, type `make ; ./datagen 640000 -f`.
 
-Todo: gradually update README files as I dont have enough time during deadline
+Todo: gradually update README files as I dont have enough time during deadline. 

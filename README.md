@@ -2,7 +2,7 @@
 Mixed precision between FP32 and FP16x2 in CUDA programs
 This repo contains all benchmarks for mixed precision tuning between FP16 and FP32 in CUDA program (and some extension to FP32-FP64, microbenchmarks). The below is the function of each subfolder (and how to run benchmarks in them). There will be further README file in each benchmark to guide the execution and performace measurement if they are not standard:
 ## Header files' folder
-1. `include/` contains the most important part: the operator overload headers and the approximate math library. Without this, the benchmarks cannot compile. 
+1. `include/` contains the most important part: the operator overload headers and the approximate math library. Without this, the FP16 benchmarks cannot compile. 
 ## FP16-FP32 mix: 
 1. `Nvidia_example/benchmarks/`: Each subfolder with the postfix :`_mixed` is the mixed precision version. The makefiles are provided. The `run_and_compare.sh` script is used to measure performance + error with the respective input parameters. For this category, there are 3 benchmarks: 
     * `Nvidia_example/benchmarks/bilateralFilter_mixed`

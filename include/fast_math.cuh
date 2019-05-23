@@ -65,7 +65,7 @@ __device__ half2 fast_h2exp(half2 input){
     result_short2.y = (short)(result.y);
     return *(half2*)(&result_short2);
 */
-    return exp_half2_saturated(input); 
+    return exp_half2_saturated(input);
 }
 
 //100 cycles
@@ -159,8 +159,99 @@ __device__ half2 cos_poly_half2(half2 x){
 }
 
 
-__device__ half2 fast_h2sin(half2 x){
+__device__ half2 cos_poly_half2_accurate(half2 x,uint32_t sign_int){
+  half2 coeff1 = __float2half2_rn(-0.5);
+  half2 coeff2 = __float2half2_rn(0.041666667);
+  half2 coeff3 = __float2half2_rn(-0.0013888889);
+  half2 coeff4 = __float2half2_rn(0.00002480158);
+  half2 result =  1 +  x*x*coeff1 + x*x*x*x*coeff2 + x*x*x*x*x*x*coeff3 ;//+ x*x*x*x*x*x*x*x*coeff4 ;
 
+  uint32_t result_int = *(uint32_t*)&result;
+  result_int ^= sign_int;
+  return *(half2*)&result_int;
+}
+
+__device__ half2 cos_poly_half2_accurate_chebyshev(half2 x_new,uint32_t sign_int){
+
+
+  //0.0287138*x^4 + 0.0231667*x^3 -0.514296*x^2 + 0.00292027*x + 0.999908
+
+  half2 coeff1 = __float2half2_rn(0.999908);
+  half2 coeff2 = __float2half2_rn(0.00292027);
+
+  half2 coeff3 = __float2half2_rn(-0.514296);
+
+  half2 coeff4 = __float2half2_rn(0.0231667);
+  half2 coeff5 = __float2half2_rn(0.0287138);
+
+  half2 result =  coeff1 +  x_new*coeff2 + x_new*x_new*coeff3 + x_new*x_new*x_new*coeff4 + x_new*x_new*x_new*x_new*coeff5
+  ;//+ x_new* x_new*x_new*x_new*x_new*coeff6;
+   ;//+ x*x*x*x*x*x*x*x*coeff4 ;
+
+  uint32_t result_int = *(uint32_t*)&result;
+  result_int ^= sign_int;
+  return *(half2*)&result_int;
+}
+__device__ half2 cos_poly_half2_accurate_chebyshev_6(half2 x_new,uint32_t sign_int){
+
+
+  //-0.0057639854, 0.051200377, -0.0074740962, -0.49730893, -0.00035824697, 1.0000078
+
+  half2 coeff1 = __float2half2_rn( 1.0000078);
+  half2 coeff2 = __float2half2_rn(-0.00035824697);
+
+  half2 coeff3 = __float2half2_rn(-0.49730893);
+
+  half2 coeff4 = __float2half2_rn(-0.0074740962);
+  half2 coeff5 = __float2half2_rn(0.051200377);
+  half2 coeff6 = __float2half2_rn(-0.0057639854);
+  half2 result =  coeff1 +  x_new*coeff2 + x_new*x_new*coeff3 + x_new*x_new*x_new*coeff4 + x_new*x_new*x_new*x_new*coeff5
+  + x_new* x_new*x_new*x_new*x_new*coeff6;
+   ;//+ x*x*x*x*x*x*x*x*coeff4 ;
+
+  uint32_t result_int = *(uint32_t*)&result;
+  result_int ^= sign_int;
+  return *(half2*)&result_int;
+}
+
+__device__ half2 fast_h2cos_accurate(half2 x){
+  x = h2absf(x);
+  half2 pi = __float2half2_rn( 3.14159265359f);
+  half2 invpi = __float2half2_rn(0.31830988618f);
+  half2 k = x*invpi;
+  half2 k_short_half;
+  short2 k_short;
+  k_short.x = __half2short_rn(k.x);
+  k_short.y = __half2short_rn(k.y);
+
+  k_short_half.x = __short2half_rn(k_short.x);
+  k_short_half.y = __short2half_rn(k_short.y);
+
+  half2 normalized =  x - k_short_half*pi;
+
+  uint32_t normalized_abs_int = *(uint32_t*)&normalized;
+  normalized_abs_int &=  0x7fff7fff;
+  half2 normalized_abs = *(half2*)&normalized_abs_int;
+  uint32_t k_int = *(uint32_t*)&k_short;
+  k_int = (k_int & 0x00010001 )<<15;
+/*  if(threadIdx.x == 0 && blockIdx.x == 0){
+    printf("normed val %f k_short %d, k_int %x  %x\n", __low2float(normalized_abs), k_short.x, k_int,k_int <<15);
+  }
+*/
+//  printf("normed val %f k_short %d, k_short %d  %x\n", __low2float(normalized_abs), k_short.x, k_short.y,k_int );
+
+  return cos_poly_half2_accurate(normalized_abs, k_int);
+}
+
+__device__ half2 fast_h2sin_accurate(half2 x){
+
+  return fast_h2cos_accurate(x - __float2half2_rn(1.57079632679f));
+  //return fast_h2cos_accurate(x + __float2half2_rn(4.71238898038));
+
+}
+//#define OLDPOLY
+__device__ half2 fast_h2sin(half2 x){
+#ifdef OLDPOLY
 // range reduction to -2pi;2pi
   half2 twopi = __float2half2_rn( 6.2831853071795865f);
   half2 invtwopi = __float2half2_rn(0.15915494309189534f);
@@ -171,10 +262,14 @@ __device__ half2 fast_h2sin(half2 x){
 
   half2 normalized =  x - k_short_half*twopi;
   return sin_poly_half2(normalized);
-
+#else
+  return fast_h2sin_accurate(x);
+#endif
 }
 
+
 __device__ half2 fast_h2cos(half2 x){
+#ifdef OLDPOLY
   half2 twopi = __float2half2_rn( 6.2831853071795865f);
   half2 invtwopi = __float2half2_rn(0.15915494309189534f);
   half2 k = x*invtwopi;
@@ -184,7 +279,11 @@ __device__ half2 fast_h2cos(half2 x){
 
   half2 normalized =  x - k_short_half*twopi;
   return cos_poly_half2(normalized);
+#else
+ return fast_h2cos_accurate(x);
+#endif
 }
+
 
 typedef struct __device_builtin__ half2_2
 {

@@ -27,5 +27,5 @@ This repo contains all benchmarks for mixed precision tuning between FP16 and FP
 The input data are provided in this repo, there is no need to generate input (except for `kmeans`, where the randomly generated input is too large). You can generate input for `kmeans` by going to the `rodinia/data/kmeans/inpuGen/`, type `make ; ./datagen 640000 -f`.
 
 Todo: 
-This is a mirror of the private developing bitbucket repo, we update the code when each release come out. 
+This is a mirror of the private developing bitbucket repo, we update the code when each release come out. This version is release v2, contains automation scripts and math library v2. 
 Gradually update README files as I dont have enough time during deadline. 

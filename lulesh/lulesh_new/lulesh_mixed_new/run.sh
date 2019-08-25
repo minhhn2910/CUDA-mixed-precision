@@ -1,1 +1,1 @@
-./lulesh -s 100
+./lulesh -s 50

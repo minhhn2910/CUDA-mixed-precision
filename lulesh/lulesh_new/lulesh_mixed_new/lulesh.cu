@@ -84,7 +84,7 @@ Additional BSD Notice
 
 #include "lulesh.h"
 
-#define SPEED 10000
+#define SPEED 1755
 /****************************************************/
 /* Allow flexibility for arithmetic representations */
 /****************************************************/

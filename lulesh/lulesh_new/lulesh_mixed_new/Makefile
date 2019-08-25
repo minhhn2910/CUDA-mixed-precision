@@ -1,5 +1,5 @@
 NVCC            = nvcc
-FLAGS           = -arch=sm_70
+FLAGS           = -arch=sm_60
 DFLAGS  = -lineinfo
 RFLAGS  = -O3 -DNDEBUG
 

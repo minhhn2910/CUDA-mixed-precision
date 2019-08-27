@@ -10,7 +10,7 @@
  */
 
 //#include "../../../include/fast_math.cuh"
-//#define SLOW_MATH
+#define SLOW_MATH
 
 #ifdef SLOW_MATH
   #include "../../../include/cuda_math.cuh"

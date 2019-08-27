@@ -12,13 +12,17 @@ ifeq ($(shell uname -m), x86_64)
 endif
 
 
-all: euler3d euler3d_double  pre_euler3d  pre_euler3d_double 
+all: euler3d euler3d_double euler3d_mixed  pre_euler3d  pre_euler3d_double
 
 euler3d: euler3d.cu
 	nvcc $(KERNEL_DIM) -O2 -arch=sm_60 euler3d.cu -o euler3d -I$(CUDA_SDK_PATH)/common/inc  -L$(CUDA_SDK_PATH)/lib $(CUTIL_LIB)
 
 euler3d_double: euler3d_double.cu
 	nvcc  -O3 -arch=sm_60 euler3d_double.cu -o euler3d_double -I$(CUDA_SDK_PATH)/common/inc  -L$(CUDA_SDK_PATH)/lib $(CUTIL_LIB)
+
+euler3d_mixed: euler3d_mixed.cu
+	nvcc  -O3 -arch=sm_60 euler3d_mixed.cu -o euler3d_mixed -I$(CUDA_SDK_PATH)/common/inc  -L$(CUDA_SDK_PATH)/lib $(CUTIL_LIB)
+
 
 
 pre_euler3d: pre_euler3d.cu

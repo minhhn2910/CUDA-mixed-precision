@@ -49,6 +49,7 @@ __global__ void
 ComputeQ_GPU(int numK, int kGlobalIndex,
 	     float* x, float* y, float* z, float* Qr , float* Qi)
 {
+if (blockIdx.x %10 < 10){
   float sX;
   float sY;
   float sZ;
@@ -70,8 +71,8 @@ ComputeQ_GPU(int numK, int kGlobalIndex,
   int kIndex = 0;
   if (numK % 2) {
     float expArg = PIx2 * (ck[0].Kx * sX + ck[0].Ky * sY + ck[0].Kz * sZ);
-    sQr += ck[0].PhiMag * cos(expArg);
-    sQi += ck[0].PhiMag * sin(expArg);
+    sQr += ck[0].PhiMag * cosf(expArg);
+    sQi += ck[0].PhiMag * sinf(expArg);
     kIndex++;
     kGlobalIndex++;
   }
@@ -81,11 +82,59 @@ ComputeQ_GPU(int numK, int kGlobalIndex,
     float expArg = PIx2 * (ck[kIndex].Kx * sX +
 			   ck[kIndex].Ky * sY +
 			   ck[kIndex].Kz * sZ);
+    sQr += ck[kIndex].PhiMag * cosf(expArg);
+    sQi += ck[kIndex].PhiMag * sinf(expArg);
+
+    int kIndex1 = kIndex + 1;
+    float expArg1 = PIx2 * (ck[kIndex1].Kx * sX +
+			    ck[kIndex1].Ky * sY +
+			    ck[kIndex1].Kz * sZ);
+    sQr += ck[kIndex1].PhiMag * cosf(expArg1);
+    sQi += ck[kIndex1].PhiMag * sinf(expArg1);
+  }
+
+  Qr[xIndex] = sQr;
+  Qi[xIndex] = sQi;
+} else {
+
+
+  double sX;
+  double sY;
+  double sZ;
+  double sQr;
+  double sQi;
+
+  // Determine the element of the X arrays computed by this thread
+  int xIndex = blockIdx.x*KERNEL_Q_THREADS_PER_BLOCK + threadIdx.x;
+
+  // Read block's X values from global mem to shared mem
+  sX = x[xIndex];
+  sY = y[xIndex];
+  sZ = z[xIndex];
+  sQr = Qr[xIndex];
+  sQi = Qi[xIndex];
+
+  // Loop over all elements of K in constant mem to compute a partial value
+  // for X.
+  int kIndex = 0;
+  if (numK % 2) {
+    double expArg = PIx2 * (ck[0].Kx * sX + ck[0].Ky * sY + ck[0].Kz * sZ);
+    sQr += ck[0].PhiMag * cos(expArg);
+    sQi += ck[0].PhiMag * sin(expArg);
+    kIndex++;
+    kGlobalIndex++;
+  }
+
+  for (; (kIndex < KERNEL_Q_K_ELEMS_PER_GRID) && (kGlobalIndex < numK);
+       kIndex += 2, kGlobalIndex += 2) {
+    double expArg = PIx2 * (ck[kIndex].Kx * sX +
+			   ck[kIndex].Ky * sY +
+			   ck[kIndex].Kz * sZ);
     sQr += ck[kIndex].PhiMag * cos(expArg);
     sQi += ck[kIndex].PhiMag * sin(expArg);
 
     int kIndex1 = kIndex + 1;
-    float expArg1 = PIx2 * (ck[kIndex1].Kx * sX +
+    double expArg1 = PIx2 * (ck[kIndex1].Kx * sX +
 			    ck[kIndex1].Ky * sY +
 			    ck[kIndex1].Kz * sZ);
     sQr += ck[kIndex1].PhiMag * cos(expArg1);
@@ -94,6 +143,7 @@ ComputeQ_GPU(int numK, int kGlobalIndex,
 
   Qr[xIndex] = sQr;
   Qi[xIndex] = sQi;
+ }
 }
 
 void computePhiMag_GPU(int numK, float* phiR_d, float* phiI_d, float* phiMag_d)
@@ -104,7 +154,7 @@ void computePhiMag_GPU(int numK, float* phiR_d, float* phiI_d, float* phiMag_d)
   dim3 DimPhiMagBlock(KERNEL_PHI_MAG_THREADS_PER_BLOCK, 1);
   dim3 DimPhiMagGrid(phiMagBlocks, 1);
 
-  ComputePhiMag_GPU <<< DimPhiMagGrid, DimPhiMagBlock >>> 
+  ComputePhiMag_GPU <<< DimPhiMagGrid, DimPhiMagBlock >>>
     (phiR_d, phiI_d, phiMag_d, numK);
 }
 
@@ -142,4 +192,3 @@ void createDataStructsCPU(int numK, int numX, float** phiMag,
   *Qr = (float*) memalign(16, numX * sizeof (float));
   *Qi = (float*) memalign(16, numX * sizeof (float));
 }
-

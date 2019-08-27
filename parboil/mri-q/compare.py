@@ -15,6 +15,8 @@ def compare_float (arr1,arr2):
         curr_err =  arr2[i]
         if (arr2[i])!= 0:
             curr_err = abs((arr1[i] - arr2[i])/arr2[i])
+        else :
+            curr_err = abs((arr1[i] - arr2[i]))
         if (curr_err > 1):
             curr_err = 1
         rmse = rmse + (arr1[i] - arr2[i])*(arr1[i] - arr2[i])
@@ -30,7 +32,8 @@ def main(argv):
     if len(arr1) != len(arr2):
         print "len mismatch"
     print len(arr1)
+    print len(arr2)
     rel_err, rmse = compare_float(arr1, arr2)
-    print "rel err %f  rmse %f"%(rel_err, rmse)
+    print "rel err %E  rmse %E"%(rel_err, rmse)
 if __name__ == '__main__':
     main(sys.argv[1:])

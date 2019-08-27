@@ -26,7 +26,7 @@ void integrateNbodySystem(DeviceData<T> *deviceData,
                           cudaGraphicsResource **pgres, unsigned int currentRead,
                           float deltaTime, float damping,
                           unsigned int numBodies, unsigned int numDevices,
-                          int blockSize, bool bUsePBO);
+                          int blockSize, bool bUsePBO, int speed);
 
 cudaError_t setSofteningSquared(float softeningSq);
 cudaError_t setSofteningSquared(double softeningSq);
@@ -292,11 +292,11 @@ template<typename T>
 void BodySystemCUDA<T>::update(T deltaTime)
 {
     assert(m_bInitialized);
-
+    int speed = 1280 ;
     integrateNbodySystem<T>(m_deviceData, m_pGRes, m_currentRead,
                             (float)deltaTime, (float)m_damping,
                             m_numBodies, m_numDevices,
-                            m_blockSize, m_bUsePBO);
+                            m_blockSize, m_bUsePBO,speed);
 
     std::swap(m_currentRead, m_currentWrite);
 }

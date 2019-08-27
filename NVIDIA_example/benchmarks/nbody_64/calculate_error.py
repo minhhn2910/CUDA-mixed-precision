@@ -50,6 +50,6 @@ def main(argv):
     print (array_1[:10])
     print (array_2[:10])
     err,rmse = calculate_err (array_1, array_2)
-    print ("err %f  rmse %f"%(err,rmse))
+    print ("rel err %f  rmse %f"%(err,rmse))
 if __name__ == '__main__':
     main(sys.argv[1:])

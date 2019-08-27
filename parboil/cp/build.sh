@@ -1,4 +1,4 @@
-CUDA_PATH=/usr/local/cuda-9.2
+CUDA_PATH=/usr/local/cuda-10.0
 SRC_PATH=./src/cuda
 gcc  -I./parboil_common/include -I$CUDA_PATH/include  -c ./parboil_common/src/args.c -o build_cuda/args.o
 gcc  -I./parboil_common/include -I$CUDA_PATH/include  -c ./parboil_common/src/parboil_cuda.c -o build_cuda/parboil_cuda.o

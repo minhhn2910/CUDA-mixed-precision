@@ -19,6 +19,9 @@
 #include <GL/freeglut.h>
 #endif
 
+//#define SCATTER
+
+
 // CUDA standard includes
 #include <cuda_runtime.h>
 #include <cuda_gl_interop.h>
@@ -245,8 +248,14 @@ integrateBodies(typename vec4<T>::Type *__restrict__ newPos,
                 typename vec4<T>::Type *__restrict__ oldPos,
                 typename vec4<T>::Type *vel,
                 unsigned int deviceOffset, unsigned int deviceNumBodies,
-                float deltaTime, float damping, int numTiles)
+                float deltaTime, float damping, int numTiles, int speed)
 {
+
+#ifdef SCATTER
+  if (blockIdx.x %10 < speed){
+#else
+  if (blockIdx.x < speed){
+#endif
     // Handle to thread block group
     cg::thread_block cta = cg::this_thread_block();
     int index = blockIdx.x * blockDim.x + threadIdx.x;
@@ -292,6 +301,47 @@ integrateBodies(typename vec4<T>::Type *__restrict__ newPos,
     // store new position and velocity
     newPos[deviceOffset + index] = position;
     vel[deviceOffset + index]    = velocity;
+  } else {
+
+    // Handle to thread block group
+    cg::thread_block cta = cg::this_thread_block();
+    int index = blockIdx.x * blockDim.x + threadIdx.x;
+
+    if (index >= deviceNumBodies)
+    {
+        return;
+    }
+
+    typename vec4<T>::Type position = oldPos[deviceOffset + index];
+
+    typename vec3<T>::Type accel = computeBodyAccel<T>(position,
+                                                       oldPos,
+                                                       numTiles, cta);
+
+    // acceleration = force / mass;
+    // new velocity = old velocity + acceleration * deltaTime
+    // note we factor out the body's mass from the equation, here and in bodyBodyInteraction
+    // (because they cancel out).  Thus here force == acceleration
+    typename vec4<T>::Type velocity = vel[deviceOffset + index];
+
+    velocity.x += accel.x * deltaTime;
+    velocity.y += accel.y * deltaTime;
+    velocity.z += accel.z * deltaTime;
+
+    velocity.x *= damping;
+    velocity.y *= damping;
+    velocity.z *= damping;
+
+    // new position = old position + velocity * deltaTime
+    position.x += velocity.x * deltaTime;
+    position.y += velocity.y * deltaTime;
+    position.z += velocity.z * deltaTime;
+
+    // store new position and velocity
+    newPos[deviceOffset + index] = position;
+    vel[deviceOffset + index]    = velocity;
+
+  }
 }
 
 template <typename T>
@@ -303,7 +353,7 @@ void integrateNbodySystem(DeviceData<T> *deviceData,
                           unsigned int numBodies,
                           unsigned int numDevices,
                           int blockSize,
-                          bool bUsePBO)
+                          bool bUsePBO, int speed)
 {
     if (bUsePBO)
     {
@@ -331,7 +381,7 @@ void integrateNbodySystem(DeviceData<T> *deviceData,
          (typename vec4<T>::Type *)deviceData[dev].dPos[currentRead],
          (typename vec4<T>::Type *)deviceData[dev].dVel,
          deviceData[dev].offset, deviceData[dev].numBodies,
-         deltaTime, damping, numTiles);
+         deltaTime, damping, numTiles, speed);
 
         if (numDevices > 1)
         {
@@ -368,7 +418,7 @@ template void integrateNbodySystem<float>(DeviceData<float> *deviceData,
                                           unsigned int numBodies,
                                           unsigned int numDevices,
                                           int blockSize,
-                                          bool bUsePBO);
+                                          bool bUsePBO, int speed);
 
 template void integrateNbodySystem<double>(DeviceData<double> *deviceData,
                                            cudaGraphicsResource **pgres,
@@ -378,4 +428,4 @@ template void integrateNbodySystem<double>(DeviceData<double> *deviceData,
                                            unsigned int numBodies,
                                            unsigned int numDevices,
                                            int blockSize,
-                                           bool bUsePBO);
+                                           bool bUsePBO, int speed);

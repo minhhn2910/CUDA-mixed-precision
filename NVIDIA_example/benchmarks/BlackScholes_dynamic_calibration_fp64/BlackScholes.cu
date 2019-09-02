@@ -53,14 +53,17 @@ float RandFloat(float low, float high)
 // Data configuration
 ////////////////////////////////////////////////////////////////////////////////
 const int OPT_N = 10000000;
-const int  NUM_ITERATIONS = 10;
-
+const int  NUM_ITERATIONS = 100;
+#define LEN_N 150
 
 const int          OPT_SZ = OPT_N * sizeof(float);
 const float      RISKFREE = 0.02f;
 const float    VOLATILITY = 0.30f;
 
 #define DIV_UP(a, b) ( ((a) + (b) - 1) / (b) )
+bool is_calibration_iter (int n){
+  return (n<7) || n ==16 || n==36 || n==66 || (n >= 101 && n<=107) || n== 117 || n== 137;
+}
 
 ////////////////////////////////////////////////////////////////////////////////
 // Main program
@@ -93,6 +96,10 @@ int main(int argc, char **argv)
     *d_OptionStrike,
     *d_OptionYears;
 
+    float
+        *h_CallResultGPU_fp64,
+        *h_PutResultGPU_fp64;
+
     //reading speed for searching
     int speed = atoi(argv[1]);
     printf("running with speed %d", speed);
@@ -117,12 +124,32 @@ int main(int argc, char **argv)
     h_OptionStrike  = (float *)malloc(OPT_SZ);
     h_OptionYears   = (float *)malloc(OPT_SZ);
 
+
+    h_CallResultGPU_fp64 = (float *)malloc(OPT_SZ);
+    h_PutResultGPU_fp64 = (float *)malloc(OPT_SZ);
+
     printf("...allocating GPU memory for options.\n");
     checkCudaErrors(cudaMalloc((void **)&d_CallResult,   OPT_SZ));
     checkCudaErrors(cudaMalloc((void **)&d_PutResult,    OPT_SZ));
     checkCudaErrors(cudaMalloc((void **)&d_StockPrice,   OPT_SZ));
     checkCudaErrors(cudaMalloc((void **)&d_OptionStrike, OPT_SZ));
     checkCudaErrors(cudaMalloc((void **)&d_OptionYears,  OPT_SZ));
+    //warm up for performance
+    for (i = 0; i < NUM_ITERATIONS; i++)
+    {
+        BlackScholesGPU<<<DIV_UP((OPT_N/2), 128), 128/*480, 128*/>>>(
+            (float2 *)d_CallResult,
+            (float2 *)d_PutResult,
+            (float2 *)d_StockPrice,
+            (float2 *)d_OptionStrike,
+            (float2 *)d_OptionYears,
+            RISKFREE,
+            VOLATILITY,
+            OPT_N,
+            0
+        );
+        getLastCudaError("BlackScholesGPU() execution failed\n");
+    }
 
     printf("...generating input data in CPU mem.\n");
     int iteration = 0;
@@ -130,18 +157,24 @@ int main(int argc, char **argv)
     double accumulate_runtime = 0.0;
     double accumulate_option = 0.0;
 
-    double runtimes[105];
-    double error[105];
+    double runtimes[LEN_N];
+    double error[LEN_N];
 
     int lower_bound = 0;
     int upper_bound = 100;
     int mid = 50;
-    double error_threshold = 1.0E-07;
+    double error_threshold = 7E-08;
     bool calibration = true;
-
-for (iteration = 0 ; iteration <30; iteration ++){
+for (iteration = 0 ; iteration <10; iteration ++){
     srand(iteration);
-
+    if (iteration == 101 ) //reset calibration
+    {
+       lower_bound = 0;
+       upper_bound = 100;
+       mid = 50;
+       error_threshold = 1.4E-7;
+    }
+    calibration = is_calibration_iter(iteration);
     //Generate options set
     for (i = 0; i < OPT_N; i++)
     {
@@ -153,6 +186,7 @@ for (iteration = 0 ; iteration <30; iteration ++){
     }
     //binary search
     mid = (upper_bound + lower_bound)/2;
+
 //    printf(" low %d up %d mid %d \n", lower_bound, upper_bound, (upper_bound + lower_bound)/2 );
     printf("\n mid calibration %d \n", mid);
     //
@@ -166,7 +200,7 @@ for (iteration = 0 ; iteration <30; iteration ++){
     runtimes[iteration] = 0;
 
 //if (iteration< 7) calibration = true;
- if(calibration){ //calibration run
+// if(calibration){ //calibration run
 //  printf("Executing Black-Scholes GPU kernel (%i iterations)...\n", NUM_ITERATIONS);
   checkCudaErrors(cudaDeviceSynchronize());
   sdkResetTimer(&hTimer);
@@ -183,7 +217,7 @@ for (iteration = 0 ; iteration <30; iteration ++){
           RISKFREE,
           VOLATILITY,
           OPT_N,
-          mid
+          0
       );
       getLastCudaError("BlackScholesGPU() execution failed\n");
   }
@@ -191,13 +225,17 @@ for (iteration = 0 ; iteration <30; iteration ++){
   checkCudaErrors(cudaDeviceSynchronize());
   sdkStopTimer(&hTimer);
   gpuTime = sdkGetTimerValue(&hTimer) / NUM_ITERATIONS;
+  if( calibration)
+  {
+    runtimes[iteration] = gpuTime;
+    accumulate_runtime += gpuTime;
+  } else
+    runtimes[iteration] = 0;
 
-  runtimes[iteration] = gpuTime;
-  accumulate_runtime += gpuTime;
   accumulate_option +=  2 * OPT_N;
   //Both call and put is calculated
 //  printf("Options count             : %i     \n", 2 * OPT_N);
-//  printf("BlackScholesGPU() time    : %f msec\n", gpuTime);
+  printf("BlackScholesGPU() time    : %f msec\n", gpuTime);
 //  printf("Effective memory bandwidth: %f GB/s\n", ((double)(5 * OPT_N * sizeof(float)) * 1E-9) / (gpuTime * 1E-3));
  printf("Gigaoptions per second    : %f     \n\n", ((double)(2 * OPT_N) * 1E-9) / (gpuTime * 1E-3));
 
@@ -206,14 +244,14 @@ for (iteration = 0 ; iteration <30; iteration ++){
 
 //  printf("\nReading back GPU results...\n");
   //Read back GPU results to compare them to CPU results
-  checkCudaErrors(cudaMemcpy(h_CallResultGPU, d_CallResult, OPT_SZ, cudaMemcpyDeviceToHost));
-  checkCudaErrors(cudaMemcpy(h_PutResultGPU,  d_PutResult,  OPT_SZ, cudaMemcpyDeviceToHost));
+  checkCudaErrors(cudaMemcpy(h_CallResultGPU_fp64, d_CallResult, OPT_SZ, cudaMemcpyDeviceToHost));
+  checkCudaErrors(cudaMemcpy(h_PutResultGPU_fp64,  d_PutResult,  OPT_SZ, cudaMemcpyDeviceToHost));
 
 
 //  printf("Checking the results...\n");
 //  printf("...running CPU calculations.\n\n");
   //Calculate options values on CPU
-  BlackScholesCPU(
+/*  BlackScholesCPU(
       h_CallResultCPU,
       h_PutResultCPU,
       h_StockPrice,
@@ -223,7 +261,7 @@ for (iteration = 0 ; iteration <30; iteration ++){
       VOLATILITY,
       OPT_N
   );
-
+*/
 //  printf("Comparing the results...\n");
   //Calculate max absolute difference and L1 distance
   //between CPU and GPU results
@@ -233,8 +271,8 @@ for (iteration = 0 ; iteration <30; iteration ++){
 
   for (i = 0; i < OPT_N; i++)
   {
-      ref   = h_CallResultCPU[i];
-      delta = fabs(h_CallResultCPU[i] - h_CallResultGPU[i]);
+      ref   = h_CallResultGPU_fp64[i];
+      delta = fabs(h_CallResultGPU_fp64[i] - h_CallResultGPU_fp64[i]);
 
       if (delta > max_delta)
       {
@@ -246,27 +284,15 @@ for (iteration = 0 ; iteration <30; iteration ++){
   }
 
   L1norm = sum_delta / sum_ref;
-  printf("L1 norm: %E\n", L1norm);
-  printf("err error_threshold: %E\n", error_threshold);
-  if (L1norm < error_threshold){
-    lower_bound = mid;
-  } else {
-    upper_bound = mid;
-  }
-  if( upper_bound - lower_bound <= 2)
-    calibration = false;
 
-}
+//}
 
-  
 
 //    printf("Executing Black-Scholes GPU kernel (%i iterations)...\n", NUM_ITERATIONS);
     checkCudaErrors(cudaDeviceSynchronize());
     sdkResetTimer(&hTimer);
     sdkStartTimer(&hTimer);
-    int running_speed  = mid;
-    if (calibration)
-      running_speed = 0;
+
     for (i = 0; i < NUM_ITERATIONS; i++)
     {
         BlackScholesGPU<<<DIV_UP((OPT_N/2), 128), 128/*480, 128*/>>>(
@@ -278,7 +304,7 @@ for (iteration = 0 ; iteration <30; iteration ++){
             RISKFREE,
             VOLATILITY,
             OPT_N,
-            running_speed
+            mid
         );
         getLastCudaError("BlackScholesGPU() execution failed\n");
     }
@@ -306,7 +332,7 @@ for (iteration = 0 ; iteration <30; iteration ++){
 //    printf("Checking the results...\n");
 //    printf("...running CPU calculations.\n\n");
     //Calculate options values on CPU
-    BlackScholesCPU(
+/*    BlackScholesCPU(
         h_CallResultCPU,
         h_PutResultCPU,
         h_StockPrice,
@@ -316,7 +342,7 @@ for (iteration = 0 ; iteration <30; iteration ++){
         VOLATILITY,
         OPT_N
     );
-
+*/
 //    printf("Comparing the results...\n");
     //Calculate max absolute difference and L1 distance
     //between CPU and GPU results
@@ -326,8 +352,8 @@ for (iteration = 0 ; iteration <30; iteration ++){
 
     for (i = 0; i < OPT_N; i++)
     {
-        ref   = h_CallResultCPU[i];
-        delta = fabs(h_CallResultCPU[i] - h_CallResultGPU[i]);
+        ref   = h_CallResultGPU_fp64[i];
+        delta = fabs(h_CallResultGPU_fp64[i] - h_CallResultGPU[i]);
 
         if (delta > max_delta)
         {
@@ -343,22 +369,39 @@ for (iteration = 0 ; iteration <30; iteration ++){
     //repeat wit appropriate token for searching script
     printf("tuning_error=%E\n", L1norm);
 //    printf("Max absolute error: %E\n\n", max_delta);
-    runtimes[iteration] += gpuTime;
-    error[iteration] = L1norm;
-    accumulate_runtime += gpuTime;
-    accumulate_option +=  2 * OPT_N;
+
+    printf("err error_threshold: %E\n", error_threshold);
+
+        runtimes[iteration] += gpuTime;
+        if(!calibration)
+          error[iteration] = L1norm;
+        else
+          error[iteration] = 0;
+
+        accumulate_runtime += gpuTime;
+        accumulate_option +=  2 * OPT_N;
+
+
+    if (L1norm < error_threshold){
+      lower_bound = mid;
+    } else {
+      upper_bound = mid;
+    }
+    if( upper_bound - lower_bound <= 2)
+      calibration = false;
 
 
 
 
 
-}
+} //end for iteration
+
     printf("\n gputime \n");
-    for (int i =0; i<105 ; i++){
+    for (int i =0; i<LEN_N ; i++){
       printf("%f, ", runtimes[i]);
     }
     printf("\n error \n");
-    for (int i =0; i<105 ; i++){
+    for (int i =0; i<LEN_N ; i++){
       printf("%.4E, ", error[i]);
     }
     printf("\n accumulate runtime %f , accumulate_opt %E \n", accumulate_runtime, accumulate_option);
